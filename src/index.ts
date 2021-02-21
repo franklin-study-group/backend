@@ -1,5 +1,6 @@
 import RedisClient from "ioredis"
 import "dotenv/config"
+import "module-alias/register"
 import express, { json } from "express"
 import mongoose from "mongoose"
 import ConnectRedis from "connect-redis"
