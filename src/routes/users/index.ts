@@ -1,6 +1,6 @@
+import { UserModel } from "@app/models/User"
 import argon from "argon2"
 import { Router } from "express"
-import { UserModel } from "../../models/User"
 import { AuthenticationBody, AuthenticationRespose, Field } from "./types"
 import { sendAuthError } from "./utils"
 
