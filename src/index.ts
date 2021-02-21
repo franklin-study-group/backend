@@ -1,12 +1,13 @@
-import RedisClient from "ioredis"
-import "dotenv/config"
-import "module-alias/register"
-import express, { json } from "express"
-import mongoose from "mongoose"
+import cors from "cors"
 import ConnectRedis from "connect-redis"
+import "dotenv/config"
+import express, { json } from "express"
 import session from "express-session"
-import { masterRouter } from "./routes"
+import RedisClient from "ioredis"
+import "module-alias/register"
+import mongoose from "mongoose"
 import { COOKIE_NAME, PRODUCTION } from "./constants"
+import { masterRouter } from "./routes"
 
 const main = async () => {
   const RedisStore = ConnectRedis(session)
@@ -16,6 +17,9 @@ const main = async () => {
   app.use(json())
 
   app.use(
+    cors({
+      credentials: true
+    }),
     session({
       name: COOKIE_NAME,
       store: new RedisStore({

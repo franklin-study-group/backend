@@ -24,10 +24,12 @@ router.post("/", async (req, res) => {
 
   const hashedPassword = await argon.hash(password)
 
-  UserModel.create({
+  const createdUser = await UserModel.create({
     email,
     password: hashedPassword
   })
+
+  req.session.userId = createdUser._id
 
   res.send({ successful: true } as AuthenticationRespose)
 })
