@@ -1,5 +1,3 @@
-import { Response } from "express"
-
 export interface AuthenticationBody {
   email: string
   password: string

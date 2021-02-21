@@ -11,14 +11,15 @@ import { masterRouter } from "./routes"
 
 const main = async () => {
   const RedisStore = ConnectRedis(session)
-  const client = new RedisClient()
+  const client = new RedisClient(process.env.REDIS_URL)
 
   const app = express()
   app.use(json())
 
   app.use(
     cors({
-      credentials: true
+      credentials: true,
+      origin: process.env.CORS_ORIGIN
     }),
     session({
       name: COOKIE_NAME,
