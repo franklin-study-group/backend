@@ -1,8 +1,16 @@
-import express from "express"
+import "dotenv/config"
+import express, { json } from "express"
+import mongoose from "mongoose"
 import { masterRouter } from "./routes"
 
-const main = () => {
+const main = async () => {
   const app = express()
+  app.use(json())
+
+  await mongoose.connect(process.env.CONNECTION_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  })
 
   app.use("/api", masterRouter)
 

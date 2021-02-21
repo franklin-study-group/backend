@@ -1,8 +1,13 @@
-import { getModelForClass, prop } from "@typegoose/typegoose"
+import { prop, Typegoose } from "@hasezoey/typegoose"
 
-export class UserModel {
+export class User extends Typegoose {
   @prop()
-  public name?: string
+  email?: string
+
+  @prop()
+  password?: string
 }
 
-export const User = getModelForClass(UserModel)
+export const UserModel = new User().setModelForClass(User, {
+  schemaOptions: { collection: "users" }
+})
