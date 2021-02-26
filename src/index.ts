@@ -8,6 +8,7 @@ import "module-alias/register"
 import mongoose from "mongoose"
 import { COOKIE_NAME, PRODUCTION } from "./constants"
 import { masterRouter } from "./routes"
+import { emailRouter } from "./routes"
 
 const main = async () => {
   const RedisStore = ConnectRedis(session)
@@ -46,6 +47,7 @@ const main = async () => {
   })
 
   app.use("/api", masterRouter)
+  app.use("/api", emailRouter)
 
   app.listen(4000, () => console.log("API started on http://localhost:4000"))
 }
